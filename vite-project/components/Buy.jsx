@@ -39,7 +39,7 @@ const Buy = ({ state }) => {
                 <label htmlFor="amount">
                     <input
                         id="amount"
-                        type="number"
+                        type="text"
                         placeholder="Enter Amount"
                     />
                 </label>
