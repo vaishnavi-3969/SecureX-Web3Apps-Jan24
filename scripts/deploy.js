@@ -6,7 +6,7 @@ async function main() {
 
   await chatApp.deployed();
 
-  console.log(` Contract Address: ${chatApp.address}`);
+  console.log(`Contract Address: ${chatApp.address}`);
 }
 
 main().catch((error) => {
