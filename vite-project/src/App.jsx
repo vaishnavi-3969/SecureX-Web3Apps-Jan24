@@ -1,33 +1,54 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect } from 'react'
+import { ethers } from 'hardhat'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [state, setState] = useState({
+    provider: null,
+    signer: null,
+    contract: null
+  })
+  const [account, setAccount] = useState('Not connected');
 
+  useEffect(() => {
+    const template = async () => {
+      const contractAddress = "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e";
+      const contractABI = "";
+
+      try {
+        const { ethereum } = window;
+        //shows metamask popup
+        const account = await ethereum.request({
+          method: 'eth_requestAccounts'
+        })
+        setAccount(account);
+        //read blockchain
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        //write blockchain
+        const signer = provider.getSigner();
+        //connect to contract
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+        setState({
+          provider,
+          signer,
+          contract
+        })
+        console.log(contract);
+      } catch (err) {
+        alert(err);
+      }
+
+    }
+    template();
+  }, [])
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
     </>
   )
 }
