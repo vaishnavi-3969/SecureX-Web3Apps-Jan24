@@ -62,11 +62,14 @@ function App() {
   }, [])
   return (
     <div className='bg-gray-900 rounded-lg p-10'>
-      <div>
+      <div className='flex'>
         <img src={Logo} alt="logo" />
-        <About/>
+        <div>
+          <About />
+          <h2>Connected Account: {account}</h2>
+        </div>
       </div>
-      <h2>Connected Account: {account}</h2>
+
       <Buy state={state} />
       <Memos state={state} />
     </div>
