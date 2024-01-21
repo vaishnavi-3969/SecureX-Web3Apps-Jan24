@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
-import { ethers } from 'hardhat'
+import { ethers } from 'ethers'
+import abi from './contractjson/SecureX.json'
 
 function App() {
   const [state, setState] = useState({
@@ -13,8 +14,8 @@ function App() {
 
   useEffect(() => {
     const template = async () => {
-      const contractAddress = "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e";
-      const contractABI = "";
+      const contractAddress = "0xBC8C00440dd64b698c19D36773690Fcee2a8dd29";
+      const contractABI = abi.abi;
 
       try {
         const { ethereum } = window;
