@@ -23,6 +23,7 @@ function App() {
       try {
         const { ethereum } = window;
         if (!ethereum) {
+          // Ethereum provider not found, handle accordingly (e.g., display a message)
           console.error("Ethereum provider not found");
           return;
         }

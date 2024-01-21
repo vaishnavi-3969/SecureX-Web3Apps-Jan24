@@ -8,8 +8,7 @@ const Buy = ({ state }) => {
         const name = document.querySelector('#name').value;
         const message = document.querySelector('#message').value;
         // const amount = document.querySelector('#amount').value;
-        const value = document.querySelector('#amount').value;
-        const amount = { value: ethers.utils.parseEther(value) };
+        const amount = { value: ethers.utils.parseEther(document.querySelector('#amount').value) };
         const transaction = await contract.buyChai(name, message, amount);
         await transaction.wait();
         console.log(name, message)
