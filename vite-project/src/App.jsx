@@ -22,10 +22,15 @@ function App() {
 
       try {
         const { ethereum } = window;
+        if (!ethereum) {
+          console.error("Ethereum provider not found");
+          return;
+        }
         //shows metamask popup
         const account = await ethereum.request({
           method: 'eth_requestAccounts'
         })
+
         window.ethereum.on("accountsChanged", () => {
           window.location.reload();
         })
