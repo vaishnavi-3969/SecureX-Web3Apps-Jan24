@@ -3,6 +3,9 @@ import './App.css'
 import { useEffect } from 'react'
 import { ethers } from 'ethers'
 import abi from './contractjson/SecureX.json'
+import Buy from '../components/Buy'
+import Memos from '../components/Memos'
+import Logo from './assets/securex2.svg'
 
 function App() {
   const [state, setState] = useState({
@@ -22,6 +25,9 @@ function App() {
         //shows metamask popup
         const account = await ethereum.request({
           method: 'eth_requestAccounts'
+        })
+        window.ethereum.on("accountsChanged", () => {
+          window.location.reload();
         })
         setAccount(account);
         //read blockchain
@@ -48,9 +54,14 @@ function App() {
     template();
   }, [])
   return (
-    <>
-
-    </>
+    <div className='bg-gray-900 rounded-lg p-10'>
+      <div>
+        <img src={Logo} alt="logo" />
+      </div>
+      <h2>Connected Account: {account}</h2>
+      <Buy state={state} />
+      <Memos state={state} />
+    </div>
   )
 }
 
