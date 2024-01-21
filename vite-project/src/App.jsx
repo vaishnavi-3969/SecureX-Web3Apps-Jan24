@@ -6,6 +6,7 @@ import abi from './contractjson/SecureX.json'
 import Buy from '../components/Buy'
 import Memos from '../components/Memos'
 import Logo from './assets/securex2.svg'
+import About from '../components/About'
 
 function App() {
   const [state, setState] = useState({
@@ -63,6 +64,7 @@ function App() {
     <div className='bg-gray-900 rounded-lg p-10'>
       <div>
         <img src={Logo} alt="logo" />
+        <About/>
       </div>
       <h2>Connected Account: {account}</h2>
       <Buy state={state} />
